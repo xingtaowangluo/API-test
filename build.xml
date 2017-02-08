@@ -2,9 +2,9 @@
 
 <project name="ant-jmeter-test" default="run" basedir=".">
 
-	<tstamp>  
-		<format property="TODAY_CN" pattern="yyyy-MM-dd" locale="zh"/>  
-	</tstamp> 
+    <tstamp>  
+	<format property="TODAY_CN" pattern="yyyy-MM-dd" locale="zh"/>  
+    </tstamp> 
 
     <!-- 需要改成自己本地的 Jmeter 目录-->  
     <property name="jmeter.home" value="/usr/local/apache-jmeter-3.1" />
