@@ -144,8 +144,7 @@
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="67791722">&quot;code&quot;:1</stringProp>
-              <stringProp name="-2008858465">&quot;token&quot;:&quot;EFUHm5GmR4PlQYGVoeJJVDGaT+</stringProp>
-              <stringProp name="667397532">5JoE87CIvuxDMk9Tg9KWD7tACG2xkf57GqQoLnqR6TOMvkQNMrApLWRuKvVuJuWNKKZjE6ehze1mR2rN6NknxwXS0HOuSjPVHfIRtbOpBnwoEfyYI=&quot;</stringProp>
+              <stringProp name="975465569">&quot;token&quot;:&quot;EFUHm5GmR4PlQYGVoeJJVDGaT\+5JoE87CIvuxDMk9Tg9KWD7tACG2xkf57GqQoLnqR6TOMvkQNMrApLWRuKvVuJuWNKKZjE6ehze1mR2rN6NknxwXS0HOuSjPVHfIRtbOpBnwoEfyYI=&quot;</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
