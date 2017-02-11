@@ -4149,7 +4149,7 @@
             <threadCounts>true</threadCounts>
           </value>
         </objProp>
-        <stringProp name="filename">D:\Program Files (x86)\Jenkins\workspace\jmter-test-windows\report\Mtime_interface.jtl</stringProp>
+        <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
