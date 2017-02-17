@@ -91,11 +91,11 @@
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">pc今日热点推荐视频</stringProp>
           </elementProp>
-          <elementProp name="Cookie_pc_hot" elementType="Argument">
-            <stringProp name="Argument.name">Cookie_pc_hot</stringProp>
-            <stringProp name="Argument.value">_userCode_=20172171045523430; _userIdentity_=20172171045527849; DefaultCity-CookieKey=290; __utmt=1; __utmt_~1=1; userId=0; defaultCity=%25E5%258C%2597%25E4%25BA%25AC%257C290; Hm_lvt_6dd1e3b818c756974fb222f0eae5512e=1485153758,1486371961,1487296070,1487299507; Hm_lpvt_6dd1e3b818c756974fb222f0eae5512e=1487301001; __utma=168396455.259482673.1487299594.1487299594.1487299594.1; __utmb=168396455.8.10.1487299594; __utmc=168396455; __utmz=168396455.1487299594.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); strIdCity=China_Beijing; loginEmail=13681166879; autoExit=1; _mi_=eb0c5d65277aeb3f5d0bbc87447c9f15; loginuser=13681166879; XMAN528=Fri%2C%2017%20Feb%202017%2003%3A10%3A54%20GMT; homePageType=B</stringProp>
+          <elementProp name="Cookie_pc" elementType="Argument">
+            <stringProp name="Argument.name">Cookie_pc</stringProp>
+            <stringProp name="Argument.value">_userCode_=2017217126383802; _userIdentity_=2017217126384301; Hm_lvt_6dd1e3b818c756974fb222f0eae5512e=1485153758,1486371961,1487296070,1487299507; Hm_lpvt_6dd1e3b818c756974fb222f0eae5512e=1487304400; userId=0; defaultCity=%25E5%258C%2597%25E4%25BA%25AC%257C290; DefaultCity-CookieKey=290; __utmt=1; __utmt_~1=1; __utma=168396455.791396885.1487304400.1487304400.1487304400.1; __utmb=168396455.2.10.1487304400; __utmc=168396455; __utmz=168396455.1487304400.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); strIdCity=China_Beijing; loginEmail=13681166879; autoExit=1; _mi_=9474ad2fbac717b434c3cfac9219879a; loginuser=13681166879; XMAN528=Fri%2C%2017%20Feb%202017%2004%3A07%3A01%20GMT; homePageType=B</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">今日热点登录cookie</stringProp>
+            <stringProp name="Argument.desc">PC登录cookie</stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
@@ -129,7 +129,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="clientId" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">${clientId}</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">clientId</stringProp>
@@ -156,7 +156,7 @@
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="67791722">&quot;code&quot;:1</stringProp>
-              <stringProp name="975465569">&quot;token&quot;:&quot;EFUHm5GmR4PlQYGVoeJJVDGaT\+5JoE87CIvuxDMk9Tg9KWD7tACG2xkf57GqQoLnqR6TOMvkQNMrApLWRuKvVuJuWNKKZjE6ehze1mR2rN6NknxwXS0HOuSjPVHfIRtbOpBnwoEfyYI=&quot;</stringProp>
+              <stringProp name="578731541">&quot;token&quot;:&quot;CrF7QGSoFo1mn8N0B7mMcURcvbBfp20GlFZtlD7WwhifxGxjhfRbUtDUM0AGEHQF9Gc8gt/kl6w=&quot;</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
@@ -2107,7 +2107,7 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PC登录" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PC登录" enabled="false">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -2134,11 +2134,15 @@
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
           <boolProp name="displayJMeterProperties">false</boolProp>
           <boolProp name="displayJMeterVariables">true</boolProp>
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
+        <hashTree/>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器" enabled="true">
+          <stringProp name="ConstantTimer.delay">2000</stringProp>
+        </ConstantTimer>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 首页推荐（/home）" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
@@ -3132,12 +3136,18 @@
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Cookie</stringProp>
+                <stringProp name="Header.value">${Cookie_pc}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="67791722">&quot;code&quot;:1</stringProp>
-              <stringProp name="-1604532348">&quot;nickname&quot;:&quot;${nickname}&quot;</stringProp>
-              <stringProp name="416811621">content&quot;:&quot;${content1}&quot;</stringProp>
-              <stringProp name="666497636">&quot;showTime&quot;:&quot;刚刚&quot;</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
@@ -3269,12 +3279,18 @@
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Cookie</stringProp>
+                <stringProp name="Header.value">${Cookie_pc}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="67791722">&quot;code&quot;:1</stringProp>
-              <stringProp name="-1604532348">&quot;nickname&quot;:&quot;${nickname}&quot;</stringProp>
-              <stringProp name="416812582">content&quot;:&quot;${content2}&quot;</stringProp>
-              <stringProp name="666497636">&quot;showTime&quot;:&quot;刚刚&quot;</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
@@ -4287,7 +4303,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Cookie</stringProp>
-                <stringProp name="Header.value">${Cookie_pc_hot}</stringProp>
+                <stringProp name="Header.value">${Cookie_pc}</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
@@ -4424,7 +4440,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Cookie</stringProp>
-                <stringProp name="Header.value">${Cookie_pc_hot}</stringProp>
+                <stringProp name="Header.value">${Cookie_pc}</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
