@@ -39,7 +39,7 @@
           </elementProp>
           <elementProp name="on-liveid" elementType="Argument">
             <stringProp name="Argument.name">on-liveid</stringProp>
-            <stringProp name="Argument.value">473</stringProp>
+            <stringProp name="Argument.value">623</stringProp>
             <stringProp name="Argument.desc">直播中的直播id</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
@@ -57,7 +57,7 @@
           </elementProp>
           <elementProp name="videoId" elementType="Argument">
             <stringProp name="Argument.name">videoId</stringProp>
-            <stringProp name="Argument.value">913</stringProp>
+            <stringProp name="Argument.value">1111</stringProp>
             <stringProp name="Argument.desc">有效的直播机位</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
@@ -156,7 +156,6 @@
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="67791722">&quot;code&quot;:1</stringProp>
-              <stringProp name="578731541">&quot;token&quot;:&quot;CrF7QGSoFo1mn8N0B7mMcURcvbBfp20GlFZtlD7WwhifxGxjhfRbUtDUM0AGEHQF9Gc8gt/kl6w=&quot;</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
