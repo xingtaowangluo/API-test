@@ -4587,6 +4587,843 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Pro相关接口" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1488253363000</longProp>
+        <longProp name="ThreadGroup.end_time">1488253363000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="连接测试环境数据库" enabled="true">
+          <boolProp name="autocommit">true</boolProp>
+          <stringProp name="checkQuery">Select 1</stringProp>
+          <stringProp name="connectionAge">5000</stringProp>
+          <stringProp name="dataSource">测试环境mysql</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://192.168.50.56:3306</stringProp>
+          <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+          <boolProp name="keepAlive">true</boolProp>
+          <stringProp name="password">mtimeuser0301</stringProp>
+          <stringProp name="poolMax">10</stringProp>
+          <stringProp name="timeout">10000</stringProp>
+          <stringProp name="transactionIsolation">DEFAULT</stringProp>
+          <stringProp name="trimInterval">60000</stringProp>
+          <stringProp name="username">mtimeuser</stringProp>
+        </JDBCDataSource>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Pro首页最新直播查询结果" enabled="true">
+          <stringProp name="dataSource">测试环境mysql</stringProp>
+          <stringProp name="query">SELECT COUNT(*) AS num FROM live.live
+WHERE is_show=2 AND product=2 AND live_type=2 AND live_status IN (2,4)</stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Select Statement</stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">num</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1.1 Pro直播列表个数为0" enabled="true">
+          <stringProp name="IfController.condition">${num_1}==0</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 Pro首页最新直播（/live_room/pro/hotLive）" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">live-api-m.mtime.cn</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/live_room/pro/hotLive</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791722">&quot;code&quot;:1</stringProp>
+                <stringProp name="1487023718">&quot;data&quot;:[],</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="断言结果" enabled="true">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>false</xml>
+                  <fieldNames>false</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <threadCounts>true</threadCounts>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+            <MailerResultCollector guiclass="MailerVisualizer" testclass="MailerResultCollector" testname="邮件观察仪" enabled="false">
+              <boolProp name="ResultCollector.error_logging">true</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>true</xml>
+                  <fieldNames>true</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <sentBytes>true</sentBytes>
+                  <threadCounts>true</threadCounts>
+                  <idleTime>true</idleTime>
+                  <connectTime>true</connectTime>
+                </value>
+              </objProp>
+              <elementProp name="MailerResultCollector.mailer_model" elementType="MailerModel">
+                <stringProp name="MailerModel.successLimit">0</stringProp>
+                <stringProp name="MailerModel.failureLimit">0</stringProp>
+                <stringProp name="MailerModel.failureSubject">Pro首页最新直播（/live_room/pro/hotLive）</stringProp>
+                <stringProp name="MailerModel.fromAddress">live_api@163.com</stringProp>
+                <stringProp name="MailerModel.smtpHost">smtp.163.com</stringProp>
+                <stringProp name="MailerModel.successSubject"></stringProp>
+                <stringProp name="MailerModel.addressie">${addresses}</stringProp>
+                <stringProp name="MailerModel.login">live_api@163.com</stringProp>
+                <stringProp name="MailerModel.password">110119Wxx</stringProp>
+                <stringProp name="MailerModel.authType">TLS</stringProp>
+              </elementProp>
+              <stringProp name="filename"></stringProp>
+            </MailerResultCollector>
+            <hashTree/>
+            <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="保存响应到文件" enabled="true">
+              <stringProp name="FileSaver.filename">${responsesavepath}/Pro首页最新直播${__time(yyyyMMdd-HHmmss,)}</stringProp>
+              <boolProp name="FileSaver.errorsonly">true</boolProp>
+              <boolProp name="FileSaver.skipautonumber">true</boolProp>
+              <boolProp name="FileSaver.skipsuffix">false</boolProp>
+              <boolProp name="FileSaver.successonly">false</boolProp>
+            </ResultSaver>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1.2 Pro直播列表个数为1" enabled="true">
+          <stringProp name="IfController.condition">${num_1}==1</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Request" enabled="true">
+            <stringProp name="dataSource">测试环境mysql</stringProp>
+            <stringProp name="queryType">Select Statement</stringProp>
+            <stringProp name="query">SELECT image,title,id,live_status 
+from live.live
+WHERE is_show=2 AND product=2 AND live_type=2 AND live_status IN (2,4)</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="variableNames"></stringProp>
+            <stringProp name="resultVariable">hotLive</stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+          </JDBCSampler>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.2 Pro首页最新直播（/live_room/pro/hotLive）" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">live-api-m.mtime.cn</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/live_room/pro/hotLive</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791722">&quot;code&quot;:1</stringProp>
+                <stringProp name="992013822">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx\?uri=${__BeanShell(vars.getObject(&quot;hotLive&quot;).get(0).get(&quot;image&quot;))}&quot;,</stringProp>
+                <stringProp name="-1547152850">&quot;liveId&quot;:${__BeanShell(vars.getObject(&quot;hotLive&quot;).get(0).get(&quot;id&quot;))},</stringProp>
+                <stringProp name="-1091137845">&quot;liveStatus&quot;:${__BeanShell(vars.getObject(&quot;hotLive&quot;).get(0).get(&quot;live_status&quot;))},</stringProp>
+                <stringProp name="-1765912886">&quot;title&quot;:&quot;${__BeanShell(vars.getObject(&quot;hotLive&quot;).get(0).get(&quot;title&quot;))}&quot;</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="断言结果" enabled="true">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>false</xml>
+                  <fieldNames>false</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <threadCounts>true</threadCounts>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+            <MailerResultCollector guiclass="MailerVisualizer" testclass="MailerResultCollector" testname="邮件观察仪" enabled="false">
+              <boolProp name="ResultCollector.error_logging">true</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>true</xml>
+                  <fieldNames>true</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <sentBytes>true</sentBytes>
+                  <threadCounts>true</threadCounts>
+                  <idleTime>true</idleTime>
+                  <connectTime>true</connectTime>
+                </value>
+              </objProp>
+              <elementProp name="MailerResultCollector.mailer_model" elementType="MailerModel">
+                <stringProp name="MailerModel.successLimit">0</stringProp>
+                <stringProp name="MailerModel.failureLimit">0</stringProp>
+                <stringProp name="MailerModel.failureSubject">Pro首页最新直播（/live_room/pro/hotLive）</stringProp>
+                <stringProp name="MailerModel.fromAddress">live_api@163.com</stringProp>
+                <stringProp name="MailerModel.smtpHost">smtp.163.com</stringProp>
+                <stringProp name="MailerModel.successSubject"></stringProp>
+                <stringProp name="MailerModel.addressie">${addresses}</stringProp>
+                <stringProp name="MailerModel.login">live_api@163.com</stringProp>
+                <stringProp name="MailerModel.password">110119Wxx</stringProp>
+                <stringProp name="MailerModel.authType">TLS</stringProp>
+              </elementProp>
+              <stringProp name="filename"></stringProp>
+            </MailerResultCollector>
+            <hashTree/>
+            <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="保存响应到文件" enabled="true">
+              <stringProp name="FileSaver.filename">${responsesavepath}/Pro首页最新直播${__time(yyyyMMdd-HHmmss,)}</stringProp>
+              <boolProp name="FileSaver.errorsonly">true</boolProp>
+              <boolProp name="FileSaver.skipautonumber">true</boolProp>
+              <boolProp name="FileSaver.skipsuffix">false</boolProp>
+              <boolProp name="FileSaver.successonly">false</boolProp>
+            </ResultSaver>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="1.3 Pro直播列表个数大于1" enabled="true">
+          <stringProp name="IfController.condition">${num_1}&gt;1</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Request" enabled="true">
+            <stringProp name="dataSource">测试环境mysql</stringProp>
+            <stringProp name="queryType">Select Statement</stringProp>
+            <stringProp name="query">SELECT image,title,id,live_status 
+FROM live.live
+WHERE product=2 AND live_type=2 AND is_show=2 AND live_status IN (2,4)
+ORDER BY start_time DESC
+LIMIT 2</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="variableNames"></stringProp>
+            <stringProp name="resultVariable">hotLive</stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+          </JDBCSampler>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.2 Pro首页最新直播（/live_room/pro/hotLive）" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">live-api-m.mtime.cn</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/live_room/pro/hotLive</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791722">&quot;code&quot;:1</stringProp>
+                <stringProp name="992013822">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx\?uri=${__BeanShell(vars.getObject(&quot;hotLive&quot;).get(0).get(&quot;image&quot;))}&quot;,</stringProp>
+                <stringProp name="-1547152850">&quot;liveId&quot;:${__BeanShell(vars.getObject(&quot;hotLive&quot;).get(0).get(&quot;id&quot;))},</stringProp>
+                <stringProp name="-1091137845">&quot;liveStatus&quot;:${__BeanShell(vars.getObject(&quot;hotLive&quot;).get(0).get(&quot;live_status&quot;))},</stringProp>
+                <stringProp name="-1765912886">&quot;title&quot;:&quot;${__BeanShell(vars.getObject(&quot;hotLive&quot;).get(0).get(&quot;title&quot;))}&quot;</stringProp>
+                <stringProp name="147541951">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx\?uri=${__BeanShell(vars.getObject(&quot;hotLive&quot;).get(1).get(&quot;image&quot;))}&quot;,</stringProp>
+                <stringProp name="-39601041">&quot;liveId&quot;:${__BeanShell(vars.getObject(&quot;hotLive&quot;).get(1).get(&quot;id&quot;))},</stringProp>
+                <stringProp name="-1158144598">&quot;liveStatus&quot;:${__BeanShell(vars.getObject(&quot;hotLive&quot;).get(1).get(&quot;live_status&quot;))},</stringProp>
+                <stringProp name="1531982057">&quot;title&quot;:&quot;${__BeanShell(vars.getObject(&quot;hotLive&quot;).get(1).get(&quot;title&quot;))}&quot;</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="断言结果" enabled="true">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>false</xml>
+                  <fieldNames>false</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <threadCounts>true</threadCounts>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+            <MailerResultCollector guiclass="MailerVisualizer" testclass="MailerResultCollector" testname="邮件观察仪" enabled="false">
+              <boolProp name="ResultCollector.error_logging">true</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>true</xml>
+                  <fieldNames>true</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <sentBytes>true</sentBytes>
+                  <threadCounts>true</threadCounts>
+                  <idleTime>true</idleTime>
+                  <connectTime>true</connectTime>
+                </value>
+              </objProp>
+              <elementProp name="MailerResultCollector.mailer_model" elementType="MailerModel">
+                <stringProp name="MailerModel.successLimit">0</stringProp>
+                <stringProp name="MailerModel.failureLimit">0</stringProp>
+                <stringProp name="MailerModel.failureSubject">Pro首页最新直播（/live_room/pro/hotLive）</stringProp>
+                <stringProp name="MailerModel.fromAddress">live_api@163.com</stringProp>
+                <stringProp name="MailerModel.smtpHost">smtp.163.com</stringProp>
+                <stringProp name="MailerModel.successSubject"></stringProp>
+                <stringProp name="MailerModel.addressie">${addresses}</stringProp>
+                <stringProp name="MailerModel.login">live_api@163.com</stringProp>
+                <stringProp name="MailerModel.password">110119Wxx</stringProp>
+                <stringProp name="MailerModel.authType">TLS</stringProp>
+              </elementProp>
+              <stringProp name="filename"></stringProp>
+            </MailerResultCollector>
+            <hashTree/>
+            <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="保存响应到文件" enabled="true">
+              <stringProp name="FileSaver.filename">${responsesavepath}/Pro首页最新直播${__time(yyyyMMdd-HHmmss,)}</stringProp>
+              <boolProp name="FileSaver.errorsonly">true</boolProp>
+              <boolProp name="FileSaver.skipautonumber">true</boolProp>
+              <boolProp name="FileSaver.skipsuffix">false</boolProp>
+              <boolProp name="FileSaver.successonly">false</boolProp>
+            </ResultSaver>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2.1 Pro直播列表个数大于5" enabled="true">
+          <stringProp name="IfController.condition">${num_1}&gt;5</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Request" enabled="true">
+            <stringProp name="dataSource">测试环境mysql</stringProp>
+            <stringProp name="queryType">Select Statement</stringProp>
+            <stringProp name="query">SELECT image,title,id,live_status 
+from live.live
+WHERE is_show=2 AND product=2 AND live_type=2 AND live_status IN (2,4)
+order by start_time DESC
+limit 5</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="variableNames">image,title,id,live_status</stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+          </JDBCSampler>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.1 Pro直播列表（/live_room/pro/liveList）" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="index" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">1</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">index</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">live-api-m.mtime.cn</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/live_room/pro/liveList</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791722">&quot;code&quot;:1</stringProp>
+                <stringProp name="881010636">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx\?uri=${image_1}&quot;,</stringProp>
+                <stringProp name="342300820">&quot;liveId&quot;:${id_1},</stringProp>
+                <stringProp name="-970116617">&quot;liveStatus&quot;:${live_status_1},</stringProp>
+                <stringProp name="-1652457020">&quot;title&quot;:&quot;${title_1}&quot;</stringProp>
+                <stringProp name="881040427">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx\?uri=${image_2}&quot;,</stringProp>
+                <stringProp name="342301781">&quot;liveId&quot;:${id_2},</stringProp>
+                <stringProp name="-970115656">&quot;liveStatus&quot;:${live_status_2},</stringProp>
+                <stringProp name="-1652456059">&quot;title&quot;:&quot;${title_2}&quot;</stringProp>
+                <stringProp name="881070218">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx\?uri=${image_3}&quot;,</stringProp>
+                <stringProp name="342302742">&quot;liveId&quot;:${id_3},</stringProp>
+                <stringProp name="-970114695">&quot;liveStatus&quot;:${live_status_3},</stringProp>
+                <stringProp name="-1652455098">&quot;title&quot;:&quot;${title_3}&quot;</stringProp>
+                <stringProp name="881100009">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx\?uri=${image_4}&quot;,</stringProp>
+                <stringProp name="342303703">&quot;liveId&quot;:${id_4},</stringProp>
+                <stringProp name="-970113734">&quot;liveStatus&quot;:${live_status_4},</stringProp>
+                <stringProp name="-1652454137">&quot;title&quot;:&quot;${title_4}&quot;</stringProp>
+                <stringProp name="881129800">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx\?uri=${image_5}&quot;,</stringProp>
+                <stringProp name="342304664">&quot;liveId&quot;:${id_5},</stringProp>
+                <stringProp name="-970112773">&quot;liveStatus&quot;:${live_status_5},</stringProp>
+                <stringProp name="-1652453176">&quot;title&quot;:&quot;${title_5}&quot;</stringProp>
+                <stringProp name="-737774893">&quot;hasMore&quot;:true</stringProp>
+                <stringProp name="1032919115">&quot;pageSize&quot;:5</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="断言结果" enabled="true">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>false</xml>
+                  <fieldNames>false</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <threadCounts>true</threadCounts>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+            <MailerResultCollector guiclass="MailerVisualizer" testclass="MailerResultCollector" testname="邮件观察仪" enabled="false">
+              <boolProp name="ResultCollector.error_logging">true</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>true</xml>
+                  <fieldNames>true</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <sentBytes>true</sentBytes>
+                  <threadCounts>true</threadCounts>
+                  <idleTime>true</idleTime>
+                  <connectTime>true</connectTime>
+                </value>
+              </objProp>
+              <elementProp name="MailerResultCollector.mailer_model" elementType="MailerModel">
+                <stringProp name="MailerModel.successLimit">0</stringProp>
+                <stringProp name="MailerModel.failureLimit">0</stringProp>
+                <stringProp name="MailerModel.failureSubject">Pro直播列表（/live_room/pro/liveList）</stringProp>
+                <stringProp name="MailerModel.fromAddress">live_api@163.com</stringProp>
+                <stringProp name="MailerModel.smtpHost">smtp.163.com</stringProp>
+                <stringProp name="MailerModel.successSubject"></stringProp>
+                <stringProp name="MailerModel.addressie">${addresses}</stringProp>
+                <stringProp name="MailerModel.login">live_api@163.com</stringProp>
+                <stringProp name="MailerModel.password">110119Wxx</stringProp>
+                <stringProp name="MailerModel.authType">TLS</stringProp>
+              </elementProp>
+              <stringProp name="filename"></stringProp>
+            </MailerResultCollector>
+            <hashTree/>
+            <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="保存响应到文件" enabled="true">
+              <stringProp name="FileSaver.filename">${responsesavepath}/Pro直播列表${__time(yyyyMMdd-HHmmss,)}</stringProp>
+              <boolProp name="FileSaver.errorsonly">true</boolProp>
+              <boolProp name="FileSaver.skipautonumber">true</boolProp>
+              <boolProp name="FileSaver.skipsuffix">false</boolProp>
+              <boolProp name="FileSaver.successonly">false</boolProp>
+            </ResultSaver>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="2.2 Pro直播列表个数小于等于5" enabled="false">
+          <stringProp name="IfController.condition">${num_1}&lt;=5</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Request" enabled="true">
+            <stringProp name="dataSource">测试环境mysql</stringProp>
+            <stringProp name="queryType">Select Statement</stringProp>
+            <stringProp name="query">SELECT image,title,id,live_status 
+from live.live
+WHERE is_show=2 AND product=2 AND live_type=2 AND live_status IN (2,4)
+order by start_time DESC</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="variableNames">image,title,id,live_status</stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+          </JDBCSampler>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.1 Pro直播列表（/live_room/pro/liveList）" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="index" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">1</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">index</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">live-api-m.mtime.cn</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/live_room/pro/liveList</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="67791722">&quot;code&quot;:1</stringProp>
+                <stringProp name="881010636">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx\?uri=${image_1}&quot;,</stringProp>
+                <stringProp name="342300820">&quot;liveId&quot;:${id_1},</stringProp>
+                <stringProp name="-970116617">&quot;liveStatus&quot;:${live_status_1},</stringProp>
+                <stringProp name="-1652457020">&quot;title&quot;:&quot;${title_1}&quot;</stringProp>
+                <stringProp name="881040427">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx\?uri=${image_2}&quot;,</stringProp>
+                <stringProp name="342301781">&quot;liveId&quot;:${id_2},</stringProp>
+                <stringProp name="-970115656">&quot;liveStatus&quot;:${live_status_2},</stringProp>
+                <stringProp name="-1652456059">&quot;title&quot;:&quot;${title_2}&quot;</stringProp>
+                <stringProp name="881070218">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx\?uri=${image_3}&quot;,</stringProp>
+                <stringProp name="342302742">&quot;liveId&quot;:${id_3},</stringProp>
+                <stringProp name="-970114695">&quot;liveStatus&quot;:${live_status_3},</stringProp>
+                <stringProp name="-1652455098">&quot;title&quot;:&quot;${title_3}&quot;</stringProp>
+                <stringProp name="881100009">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx\?uri=${image_4}&quot;,</stringProp>
+                <stringProp name="342303703">&quot;liveId&quot;:${id_4},</stringProp>
+                <stringProp name="-970113734">&quot;liveStatus&quot;:${live_status_4},</stringProp>
+                <stringProp name="-1652454137">&quot;title&quot;:&quot;${title_4}&quot;</stringProp>
+                <stringProp name="881129800">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx\?uri=${image_5}&quot;,</stringProp>
+                <stringProp name="342304664">&quot;liveId&quot;:${id_5},</stringProp>
+                <stringProp name="-970112773">&quot;liveStatus&quot;:${live_status_5},</stringProp>
+                <stringProp name="-1652453176">&quot;title&quot;:&quot;${title_5}&quot;</stringProp>
+                <stringProp name="-737774893">&quot;hasMore&quot;:true</stringProp>
+                <stringProp name="1032919115">&quot;pageSize&quot;:5</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="断言结果" enabled="true">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>false</xml>
+                  <fieldNames>false</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <threadCounts>true</threadCounts>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+            <MailerResultCollector guiclass="MailerVisualizer" testclass="MailerResultCollector" testname="邮件观察仪" enabled="false">
+              <boolProp name="ResultCollector.error_logging">true</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>true</xml>
+                  <fieldNames>true</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <sentBytes>true</sentBytes>
+                  <threadCounts>true</threadCounts>
+                  <idleTime>true</idleTime>
+                  <connectTime>true</connectTime>
+                </value>
+              </objProp>
+              <elementProp name="MailerResultCollector.mailer_model" elementType="MailerModel">
+                <stringProp name="MailerModel.successLimit">0</stringProp>
+                <stringProp name="MailerModel.failureLimit">0</stringProp>
+                <stringProp name="MailerModel.failureSubject">Pro直播列表（/live_room/pro/liveList）</stringProp>
+                <stringProp name="MailerModel.fromAddress">live_api@163.com</stringProp>
+                <stringProp name="MailerModel.smtpHost">smtp.163.com</stringProp>
+                <stringProp name="MailerModel.successSubject"></stringProp>
+                <stringProp name="MailerModel.addressie">${addresses}</stringProp>
+                <stringProp name="MailerModel.login">live_api@163.com</stringProp>
+                <stringProp name="MailerModel.password">110119Wxx</stringProp>
+                <stringProp name="MailerModel.authType">TLS</stringProp>
+              </elementProp>
+              <stringProp name="filename"></stringProp>
+            </MailerResultCollector>
+            <hashTree/>
+            <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="保存响应到文件" enabled="true">
+              <stringProp name="FileSaver.filename">${responsesavepath}/Pro直播列表${__time(yyyyMMdd-HHmmss,)}</stringProp>
+              <boolProp name="FileSaver.errorsonly">true</boolProp>
+              <boolProp name="FileSaver.skipautonumber">true</boolProp>
+              <boolProp name="FileSaver.skipsuffix">false</boolProp>
+              <boolProp name="FileSaver.successonly">false</boolProp>
+            </ResultSaver>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
