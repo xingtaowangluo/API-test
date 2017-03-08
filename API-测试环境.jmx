@@ -947,7 +947,7 @@
         <hashTree>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="-1597142371">&quot;code&quot;:0|&quot;code&quot;:1</stringProp>
+              <stringProp name="67791722">&quot;code&quot;:1</stringProp>
               <stringProp name="899635521">&quot;showMsg&quot;:&quot;预约成功&quot;|&quot;showMsg&quot;:&quot;您已预约&quot;</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
