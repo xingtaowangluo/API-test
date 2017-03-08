@@ -2187,7 +2187,7 @@
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
         <hashTree/>
-        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器" enabled="false">
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器" enabled="true">
           <stringProp name="ConstantTimer.delay">2000</stringProp>
         </ConstantTimer>
         <hashTree/>
@@ -4616,8 +4616,6 @@
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="-1640024891">&quot;show&quot;:true</stringProp>
-              <stringProp name="1005757132">{&quot;liveImgDiv&quot;:{&quot;imgLink&quot;:&quot;http://live.mtime.com/\?liveId=${liveId1}&quot;,&quot;imgUrl&quot;:&quot;http</stringProp>
-              <stringProp name="-243172056">&quot;liveItems&quot;:\[{&quot;link&quot;:&quot;http</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
