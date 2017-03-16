@@ -4638,7 +4638,7 @@ LIMIT 15,1</stringProp>
           <stringProp name="variableNames">liveId,title,liveStatus</stringProp>
         </JDBCSampler>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.8.4 直播列表-我的预约（/live_room/getLiveList）" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.9 精彩回放分页" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="pageNo" elementType="HTTPArgument">
@@ -4757,7 +4757,7 @@ LIMIT 15,1</stringProp>
             <elementProp name="MailerResultCollector.mailer_model" elementType="MailerModel">
               <stringProp name="MailerModel.successLimit">0</stringProp>
               <stringProp name="MailerModel.failureLimit">0</stringProp>
-              <stringProp name="MailerModel.failureSubject">直播列表-我的预约（/live_room/getLiveList）</stringProp>
+              <stringProp name="MailerModel.failureSubject">精彩回放分页（/live_room/getLiveList）</stringProp>
               <stringProp name="MailerModel.fromAddress">live_api@163.com</stringProp>
               <stringProp name="MailerModel.smtpHost">smtp.163.com</stringProp>
               <stringProp name="MailerModel.successSubject"></stringProp>
@@ -4770,7 +4770,7 @@ LIMIT 15,1</stringProp>
           </MailerResultCollector>
           <hashTree/>
           <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="保存响应到文件" enabled="true">
-            <stringProp name="FileSaver.filename">${responsesavepath}直播列表-我的预约${__time(yyyyMMdd-HHmmss,)}</stringProp>
+            <stringProp name="FileSaver.filename">${responsesavepath}精彩回放分页${__time(yyyyMMdd-HHmmss,)}</stringProp>
             <boolProp name="FileSaver.errorsonly">true</boolProp>
             <boolProp name="FileSaver.skipautonumber">true</boolProp>
             <boolProp name="FileSaver.skipsuffix">false</boolProp>
