@@ -57,7 +57,7 @@
           </elementProp>
           <elementProp name="videoId" elementType="Argument">
             <stringProp name="Argument.name">videoId</stringProp>
-            <stringProp name="Argument.value">1111</stringProp>
+            <stringProp name="Argument.value">1250</stringProp>
             <stringProp name="Argument.desc">有效的直播机位</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
@@ -168,6 +168,22 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
+        <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="连接测试环境数据库" enabled="true">
+          <boolProp name="autocommit">true</boolProp>
+          <stringProp name="checkQuery">Select 1</stringProp>
+          <stringProp name="connectionAge">5000</stringProp>
+          <stringProp name="dataSource">测试环境mysql</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://192.168.50.56:3306</stringProp>
+          <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+          <boolProp name="keepAlive">true</boolProp>
+          <stringProp name="password">mtimeuser0301</stringProp>
+          <stringProp name="poolMax">10</stringProp>
+          <stringProp name="timeout">10000</stringProp>
+          <stringProp name="transactionIsolation">DEFAULT</stringProp>
+          <stringProp name="trimInterval">60000</stringProp>
+          <stringProp name="username">mtimeuser</stringProp>
+        </JDBCDataSource>
+        <hashTree/>
         <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器" enabled="true">
           <stringProp name="ConstantTimer.delay">2000</stringProp>
         </ConstantTimer>
@@ -333,6 +349,20 @@
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
         <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="查询直播前直播数据${pre-liveid}" enabled="true">
+          <stringProp name="dataSource">测试环境mysql</stringProp>
+          <stringProp name="queryType">Select Statement</stringProp>
+          <stringProp name="query">SELECT appoint_url,description,id,live_status,movie_id,movie_name,movie_is_show,room_num,UNIX_TIMESTAMP(start_time),title 
+FROM live.live  
+WHERE id=${pre-liveid}</stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="variableNames">appointedImage,description,liveId,liveStatus,movieId,name,movieIsShow,roomNum,startTime,title</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+        </JDBCSampler>
+        <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 直播前-直播间详情页（/live_room/detail）" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
             <collectionProp name="Arguments.arguments">
@@ -392,6 +422,97 @@
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="2101543426">&quot;code&quot;:1,</stringProp>
+              <stringProp name="-1979388490">&quot;appointedImage&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=${appointedImage_1}&quot;,</stringProp>
+              <stringProp name="1677154464">&quot;liveId&quot;:${liveId_1},</stringProp>
+              <stringProp name="227674638">&quot;liveStatus&quot;:${liveStatus_1},</stringProp>
+              <stringProp name="1605077428">&quot;movieId&quot;:${movieId_1},</stringProp>
+              <stringProp name="2113247190">&quot;name&quot;:&quot;${name_1}&quot;,</stringProp>
+              <stringProp name="-1024514252">&quot;movieIsShow&quot;:${movieIsShow_1},</stringProp>
+              <stringProp name="-1588484286">&quot;roomNum&quot;:&quot;${roomNum_1}&quot;,</stringProp>
+              <stringProp name="-1694168652">&quot;startTime&quot;:${startTime_1},</stringProp>
+              <stringProp name="313439976">&quot;title&quot;:&quot;${title_1}&quot;,</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="全部数-据响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="123">{</stringProp>
+              <stringProp name="2101543426">&quot;code&quot;:1,</stringProp>
+              <stringProp name="569144535">&quot;data&quot;:{</stringProp>
+              <stringProp name="288258056">&quot;appointed&quot;:true,</stringProp>
+              <stringProp name="-1901517960">&quot;appointedImage&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=http://192.168.50.81:8020/mg/2017/02/09/154213.37045455.jpg&quot;,</stringProp>
+              <stringProp name="1460601822">&quot;description&quot;:&quot;接口自动化用直播前视频，勿动&quot;,</stringProp>
+              <stringProp name="1557665016">&quot;liveId&quot;:${pre-liveid},</stringProp>
+              <stringProp name="-602780141">&quot;liveStatus&quot;:1,</stringProp>
+              <stringProp name="-1424197611">&quot;movie&quot;:{</stringProp>
+              <stringProp name="1222755350">&quot;img&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=http://192.168.50.81:8020/mt/2016/10/27/171805.59874587_1280X720X2.jpg&quot;,</stringProp>
+              <stringProp name="953099432">&quot;mins&quot;:&quot;97分钟&quot;,</stringProp>
+              <stringProp name="-1285297597">&quot;movieId&quot;:38197,</stringProp>
+              <stringProp name="131524270">&quot;name&quot;:&quot;大灰熊&quot;,</stringProp>
+              <stringProp name="1365224129">&quot;nameEn&quot;:&quot;Grizzly&quot;,</stringProp>
+              <stringProp name="2030482364">&quot;overallRating&quot;:0,</stringProp>
+              <stringProp name="628635505">&quot;releaseArea&quot;:&quot;美国&quot;,</stringProp>
+              <stringProp name="269615171">&quot;releaseDate&quot;:&quot;1976年05月21日&quot;,</stringProp>
+              <stringProp name="469571169">&quot;story&quot;:&quot;&quot;,</stringProp>
+              <stringProp name="-274728290">&quot;type&quot;:[&quot;惊悚&quot;,&quot;恐怖&quot;],</stringProp>
+              <stringProp name="-1075828028">&quot;wantCount&quot;:9</stringProp>
+              <stringProp name="3919">},</stringProp>
+              <stringProp name="816998184">&quot;movieIsShow&quot;:1,</stringProp>
+              <stringProp name="-1829492982">&quot;onlineCount&quot;:&quot;0&quot;,</stringProp>
+              <stringProp name="-1208044358">&quot;related&quot;:{</stringProp>
+              <stringProp name="1047989199">&quot;goodsCount&quot;:0,</stringProp>
+              <stringProp name="-1584372288">&quot;goodsList&quot;:[],</stringProp>
+              <stringProp name="-2002268726">&quot;relateId&quot;:0,</stringProp>
+              <stringProp name="1463779536">&quot;relatedUrl&quot;:&quot;https://m.mtime.cn/#!/commerce/list/&quot;</stringProp>
+              <stringProp name="3919">},</stringProp>
+              <stringProp name="1837741650">&quot;roomNum&quot;:&quot;17020915454cac&quot;,</stringProp>
+              <stringProp name="1770677259">&quot;startTime&quot;:1464746400,</stringProp>
+              <stringProp name="1608759634">&quot;tabIndex&quot;:1,</stringProp>
+              <stringProp name="1135662305">&quot;tabList&quot;:[],</stringProp>
+              <stringProp name="-680968300">&quot;ticketStatus&quot;:0,</stringProp>
+              <stringProp name="852969619">&quot;title&quot;:&quot;【接口自动化】直播前视频，勿动&quot;,</stringProp>
+              <stringProp name="-172582198">&quot;video&quot;:[</stringProp>
+              <stringProp name="123">{</stringProp>
+              <stringProp name="-796054203">&quot;hightUrl&quot;:&quot;https://vfx.mtime.cn/Video/2016/05/30/mp4/160530194737764749_480.mp4&quot;,</stringProp>
+              <stringProp name="1271909244">&quot;img&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=http://192.168.50.81:8020/mg/2016/08/15/182419.14155195_235X132X4.jpg&quot;,</stringProp>
+              <stringProp name="1674768468">&quot;length&quot;:80,</stringProp>
+              <stringProp name="733012249">&quot;title&quot;:&quot;新传视频&quot;,</stringProp>
+              <stringProp name="-2020485910">&quot;url&quot;:&quot;https://vfx.mtime.cn/Video/2016/05/30/mp4/160530194737764749.mp4&quot;,</stringProp>
+              <stringProp name="-762425942">&quot;videoId&quot;:42411</stringProp>
+              <stringProp name="3919">},</stringProp>
+              <stringProp name="123">{</stringProp>
+              <stringProp name="1884081044">&quot;hightUrl&quot;:&quot;https://vfx.mtime.cn/Video/2016/10/26/mp4/161026181754585128_480.mp4&quot;,</stringProp>
+              <stringProp name="-1067161201">&quot;img&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=http://192.168.50.81:8020/mg/2016/10/26/181658.21672009_235X132X4.jpg&quot;,</stringProp>
+              <stringProp name="378010710">&quot;length&quot;:149,</stringProp>
+              <stringProp name="-584682555">&quot;title&quot;:&quot;可播的预告片啊啊啊啊啊&quot;,</stringProp>
+              <stringProp name="63107769">&quot;url&quot;:&quot;https://vfx.mtime.cn/Video/2016/10/26/mp4/161026181754585128.mp4&quot;,</stringProp>
+              <stringProp name="-762425938">&quot;videoId&quot;:42415</stringProp>
+              <stringProp name="3919">},</stringProp>
+              <stringProp name="123">{</stringProp>
+              <stringProp name="1083375371">&quot;hightUrl&quot;:&quot;https://vfx.mtime.cn/Video/2016/10/09/mp4/161009164732475476_480.mp4&quot;,</stringProp>
+              <stringProp name="407083550">&quot;img&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=http://192.168.50.81:8020/mg/2016/10/09/165952.19135685_235X132X4.jpg&quot;,</stringProp>
+              <stringProp name="1674769429">&quot;length&quot;:90,</stringProp>
+              <stringProp name="-318372977">&quot;title&quot;:&quot;可播的变形金刚！@#%*￥啦啦啦啦啦&quot;,</stringProp>
+              <stringProp name="-1776059984">&quot;url&quot;:&quot;https://vfx.mtime.cn/Video/2016/10/09/mp4/161009164732475476.mp4&quot;,</stringProp>
+              <stringProp name="-762425939">&quot;videoId&quot;:42414</stringProp>
+              <stringProp name="125">}</stringProp>
+              <stringProp name="93">]</stringProp>
+              <stringProp name="3919">},</stringProp>
+              <stringProp name="1629528021">&quot;msg&quot;:&quot;&quot;,</stringProp>
+              <stringProp name="1824202362">&quot;showMsg&quot;:&quot;&quot;</stringProp>
+              <stringProp name="125">}</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
           </ResponseAssertion>
           <hashTree/>
           <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="断言结果" enabled="true">
@@ -484,6 +605,20 @@
           </ResultSaver>
           <hashTree/>
         </hashTree>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="查询直播中直播数据${on-liveid}" enabled="true">
+          <stringProp name="dataSource">测试环境mysql</stringProp>
+          <stringProp name="queryType">Select Statement</stringProp>
+          <stringProp name="query">SELECT appoint_url,description,id,live_status,movie_id,movie_name,movie_is_show,room_num,UNIX_TIMESTAMP(start_time),title 
+FROM live.live  
+WHERE id=${on-liveid}</stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="variableNames">appointedImage,description,liveId,liveStatus,movieId,name,movieIsShow,roomNum,startTime,title</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+        </JDBCSampler>
+        <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 直播中-直播间详情页（/live_room/detail）" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
             <collectionProp name="Arguments.arguments">
@@ -543,6 +678,82 @@
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="2101543426">&quot;code&quot;:1,</stringProp>
+              <stringProp name="-1979388490">&quot;appointedImage&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=${appointedImage_1}&quot;,</stringProp>
+              <stringProp name="1677154464">&quot;liveId&quot;:${liveId_1},</stringProp>
+              <stringProp name="227674638">&quot;liveStatus&quot;:${liveStatus_1},</stringProp>
+              <stringProp name="1605077428">&quot;movieId&quot;:${movieId_1},</stringProp>
+              <stringProp name="2113247190">&quot;name&quot;:&quot;${name_1}&quot;,</stringProp>
+              <stringProp name="-1024514252">&quot;movieIsShow&quot;:${movieIsShow_1},</stringProp>
+              <stringProp name="-1588484286">&quot;roomNum&quot;:&quot;${roomNum_1}&quot;,</stringProp>
+              <stringProp name="-1694168652">&quot;startTime&quot;:${startTime_1},</stringProp>
+              <stringProp name="313439976">&quot;title&quot;:&quot;${title_1}&quot;,</stringProp>
+              <stringProp name="-678245622">&quot;videoId&quot;:${videoId}</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="全数据-响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="123">{</stringProp>
+              <stringProp name="2101543426">&quot;code&quot;:1,</stringProp>
+              <stringProp name="569144535">&quot;data&quot;:{</stringProp>
+              <stringProp name="1204990891">&quot;appointDesc&quot;:&quot;当前有0人预约&quot;,</stringProp>
+              <stringProp name="-70695681">&quot;appointed&quot;:false,</stringProp>
+              <stringProp name="-268395160">&quot;appointedImage&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=http://192.168.50.81:8020/mg/2017/02/24/191911.20665919.jpg&quot;,</stringProp>
+              <stringProp name="-701109250">&quot;description&quot;:&quot;接口自动化用直播中视频，勿动&quot;,</stringProp>
+              <stringProp name="-358486708">&quot;liveId&quot;:${on-liveid},</stringProp>
+              <stringProp name="-602780110">&quot;liveStatus&quot;:2,</stringProp>
+              <stringProp name="-1424197611">&quot;movie&quot;:{</stringProp>
+              <stringProp name="1222755350">&quot;img&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=http://192.168.50.81:8020/mt/2016/10/27/171805.59874587_1280X720X2.jpg&quot;,</stringProp>
+              <stringProp name="953099432">&quot;mins&quot;:&quot;97分钟&quot;,</stringProp>
+              <stringProp name="-1285297597">&quot;movieId&quot;:38197,</stringProp>
+              <stringProp name="131524270">&quot;name&quot;:&quot;大灰熊&quot;,</stringProp>
+              <stringProp name="1365224129">&quot;nameEn&quot;:&quot;Grizzly&quot;,</stringProp>
+              <stringProp name="2030482364">&quot;overallRating&quot;:0,</stringProp>
+              <stringProp name="628635505">&quot;releaseArea&quot;:&quot;美国&quot;,</stringProp>
+              <stringProp name="269615171">&quot;releaseDate&quot;:&quot;1976年05月21日&quot;,</stringProp>
+              <stringProp name="469571169">&quot;story&quot;:&quot;&quot;,</stringProp>
+              <stringProp name="-274728290">&quot;type&quot;:[&quot;惊悚&quot;,&quot;恐怖&quot;],</stringProp>
+              <stringProp name="-1075828028">&quot;wantCount&quot;:9</stringProp>
+              <stringProp name="3919">},</stringProp>
+              <stringProp name="816998184">&quot;movieIsShow&quot;:1,</stringProp>
+              <stringProp name="-1208044358">&quot;related&quot;:{</stringProp>
+              <stringProp name="1047989199">&quot;goodsCount&quot;:0,</stringProp>
+              <stringProp name="-1584372288">&quot;goodsList&quot;:[],</stringProp>
+              <stringProp name="-2002268726">&quot;relateId&quot;:0,</stringProp>
+              <stringProp name="1463779536">&quot;relatedUrl&quot;:&quot;https://m.mtime.cn/#!/commerce/list/&quot;</stringProp>
+              <stringProp name="3919">},</stringProp>
+              <stringProp name="-389848587">&quot;roomNum&quot;:&quot;17022419744lad&quot;,</stringProp>
+              <stringProp name="2086425769">&quot;startTime&quot;:1491045840,</stringProp>
+              <stringProp name="1608759665">&quot;tabIndex&quot;:2,</stringProp>
+              <stringProp name="1135662305">&quot;tabList&quot;:[],</stringProp>
+              <stringProp name="-680968300">&quot;ticketStatus&quot;:0,</stringProp>
+              <stringProp name="-1308741453">&quot;title&quot;:&quot;【接口自动化】直播中视频，勿动&quot;,</stringProp>
+              <stringProp name="-172582198">&quot;video&quot;:[</stringProp>
+              <stringProp name="123">{</stringProp>
+              <stringProp name="670570709">&quot;hightUrl&quot;:&quot;&quot;,</stringProp>
+              <stringProp name="-33536707">&quot;img&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=http://192.168.50.81:8020/mg/2017/03/17/170922.44163939.jpg&quot;</stringProp>
+              <stringProp name="192571868">&quot;length&quot;:0,</stringProp>
+              <stringProp name="-1880658930">&quot;title&quot;:&quot;自动化&quot;,</stringProp>
+              <stringProp name="1942750887">&quot;url&quot;:&quot;&quot;,</stringProp>
+              <stringProp name="-678245622">&quot;videoId&quot;:${videoId}</stringProp>
+              <stringProp name="125">}</stringProp>
+              <stringProp name="93">]</stringProp>
+              <stringProp name="3919">},</stringProp>
+              <stringProp name="1629528021">&quot;msg&quot;:&quot;&quot;,</stringProp>
+              <stringProp name="1824202362">&quot;showMsg&quot;:&quot;&quot;</stringProp>
+              <stringProp name="125">}</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
           </ResponseAssertion>
           <hashTree/>
           <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="断言结果" enabled="true">
@@ -635,6 +846,20 @@
           </ResultSaver>
           <hashTree/>
         </hashTree>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="查询直播后直播数据${suf-liveid}" enabled="true">
+          <stringProp name="dataSource">测试环境mysql</stringProp>
+          <stringProp name="queryType">Select Statement</stringProp>
+          <stringProp name="query">SELECT appoint_url,description,id,live_status,movie_id,movie_name,movie_is_show,room_num,UNIX_TIMESTAMP(start_time),title 
+FROM live.live  
+WHERE id=${suf-liveid}</stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="variableNames">appointedImage,description,liveId,liveStatus,movieId,name,movieIsShow,roomNum,startTime,title</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+        </JDBCSampler>
+        <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.1 直播后-直播间详情页（/live_room/detail）" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
             <collectionProp name="Arguments.arguments">
@@ -694,6 +919,82 @@
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="2101543426">&quot;code&quot;:1,</stringProp>
+              <stringProp name="-1979388490">&quot;appointedImage&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=${appointedImage_1}&quot;,</stringProp>
+              <stringProp name="1677154464">&quot;liveId&quot;:${liveId_1},</stringProp>
+              <stringProp name="227674638">&quot;liveStatus&quot;:${liveStatus_1},</stringProp>
+              <stringProp name="1605077428">&quot;movieId&quot;:${movieId_1},</stringProp>
+              <stringProp name="2113247190">&quot;name&quot;:&quot;${name_1}&quot;,</stringProp>
+              <stringProp name="-1024514252">&quot;movieIsShow&quot;:${movieIsShow_1},</stringProp>
+              <stringProp name="-1588484286">&quot;roomNum&quot;:&quot;${roomNum_1}&quot;,</stringProp>
+              <stringProp name="-1694168652">&quot;startTime&quot;:${startTime_1},</stringProp>
+              <stringProp name="313439976">&quot;title&quot;:&quot;${title_1}&quot;,</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="全数据-响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="123">{</stringProp>
+              <stringProp name="2101543426">&quot;code&quot;:1,</stringProp>
+              <stringProp name="569144535">&quot;data&quot;:{</stringProp>
+              <stringProp name="1204990891">&quot;appointDesc&quot;:&quot;当前有0人预约&quot;,</stringProp>
+              <stringProp name="-70695681">&quot;appointed&quot;:false,</stringProp>
+              <stringProp name="942201342">&quot;appointedImage&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=http://192.168.50.81:8020/mg/2017/02/09/160528.96258980.jpg&quot;,</stringProp>
+              <stringProp name="-1996572931">&quot;description&quot;:&quot;接口自动化用直播后视频，勿动&quot;,</stringProp>
+              <stringProp name="652512887">&quot;liveId&quot;:${suf-liveid},</stringProp>
+              <stringProp name="-602780048">&quot;liveStatus&quot;:4,</stringProp>
+              <stringProp name="-1424197611">&quot;movie&quot;:{</stringProp>
+              <stringProp name="-2076800813">&quot;img&quot;:&quot;&quot;,</stringProp>
+              <stringProp name="-1352370447">&quot;mins&quot;:&quot;&quot;,</stringProp>
+              <stringProp name="-1315686525">&quot;movieId&quot;:26471,</stringProp>
+              <stringProp name="59177530">&quot;name&quot;:&quot;变形金刚&quot;,</stringProp>
+              <stringProp name="-124450584">&quot;nameEn&quot;:&quot;The Transformers: The Movie&quot;,</stringProp>
+              <stringProp name="2030482364">&quot;overallRating&quot;:0,</stringProp>
+              <stringProp name="628635505">&quot;releaseArea&quot;:&quot;美国&quot;,</stringProp>
+              <stringProp name="1133536350">&quot;releaseDate&quot;:&quot;1986年08月08日&quot;,</stringProp>
+              <stringProp name="469571169">&quot;story&quot;:&quot;&quot;,</stringProp>
+              <stringProp name="1012268886">&quot;type&quot;:[&quot;&quot;],</stringProp>
+              <stringProp name="-1075828037">&quot;wantCount&quot;:0</stringProp>
+              <stringProp name="3919">},</stringProp>
+              <stringProp name="816998184">&quot;movieIsShow&quot;:1,</stringProp>
+              <stringProp name="-1829492982">&quot;onlineCount&quot;:&quot;0&quot;,</stringProp>
+              <stringProp name="-1208044358">&quot;related&quot;:{</stringProp>
+              <stringProp name="1047989199">&quot;goodsCount&quot;:0,</stringProp>
+              <stringProp name="-1584372288">&quot;goodsList&quot;:[],</stringProp>
+              <stringProp name="-2002268726">&quot;relateId&quot;:0,</stringProp>
+              <stringProp name="1463779536">&quot;relatedUrl&quot;:&quot;https://m.mtime.cn/#!/commerce/list/&quot;</stringProp>
+              <stringProp name="3919">},</stringProp>
+              <stringProp name="-1654058157">&quot;roomNum&quot;:&quot;17020916518lbd&quot;,</stringProp>
+              <stringProp name="697612045">&quot;startTime&quot;:1486627620,</stringProp>
+              <stringProp name="1608759634">&quot;tabIndex&quot;:1,</stringProp>
+              <stringProp name="1135662305">&quot;tabList&quot;:[],</stringProp>
+              <stringProp name="-680968300">&quot;ticketStatus&quot;:0,</stringProp>
+              <stringProp name="1690762162">&quot;title&quot;:&quot;【接口自动化】直播后视频，勿动&quot;,</stringProp>
+              <stringProp name="-172582198">&quot;video&quot;:[</stringProp>
+              <stringProp name="123">{</stringProp>
+              <stringProp name="272457730">&quot;hightUrl&quot;:&quot;http://live-qncdn-test.mtime.cn/playback/474/589c1fe568d03f791b5c4c0f_500k.mp4&quot;,</stringProp>
+              <stringProp name="266742150">&quot;img&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=http://192.168.50.81:8020/mg/2017/02/09/155217.15826026.jpg&quot;,</stringProp>
+              <stringProp name="378156782">&quot;length&quot;:619,</stringProp>
+              <stringProp name="-1880658930">&quot;title&quot;:&quot;自动化&quot;,</stringProp>
+              <stringProp name="749500849">&quot;url&quot;:&quot;http://live-qncdn-test.mtime.cn/playback/474/589c1fe568d03f791b5c4c0f_800k.mp4&quot;,</stringProp>
+              <stringProp name="61781168">&quot;videoId&quot;:914</stringProp>
+              <stringProp name="125">}</stringProp>
+              <stringProp name="93">]</stringProp>
+              <stringProp name="3919">},</stringProp>
+              <stringProp name="1629528021">&quot;msg&quot;:&quot;&quot;,</stringProp>
+              <stringProp name="1824202362">&quot;showMsg&quot;:&quot;&quot;</stringProp>
+              <stringProp name="125">}</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
           </ResponseAssertion>
           <hashTree/>
           <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="断言结果" enabled="true">
@@ -2139,7 +2440,7 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="PC端" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="PC端" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -4812,7 +5113,7 @@ LIMIT 15,1</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="通用" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="通用" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -5408,7 +5709,7 @@ LIMIT 15,1</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="PC首页今日热点" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="PC首页今日热点" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -5840,7 +6141,7 @@ LIMIT 15,1</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Pro相关接口" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Pro相关接口" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
