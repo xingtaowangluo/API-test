@@ -6464,6 +6464,7 @@ LIMIT 4</stringProp>
               <stringProp name="-1308741453">&quot;title&quot;:&quot;【接口自动化】直播中视频，勿动&quot;,</stringProp>
               <stringProp name="1914978920">&quot;videoId&quot;:1250</stringProp>
               <stringProp name="125">}</stringProp>
+              <stringProp name="-678245622">&quot;videoId&quot;:${videoId}</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
