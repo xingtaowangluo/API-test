@@ -9582,7 +9582,7 @@ WHERE a.id=b.live_id AND a.id=${Pro_liveid}</stringProp>
               <stringProp name="1633065706">&quot;detailUrl&quot;:&quot;https://b.mtime.cn/item/136906&quot;,</stringProp>
               <stringProp name="-1816707782">&quot;goodsId&quot;:136906,</stringProp>
               <stringProp name="-39668077">&quot;goodsName&quot;:&quot;323&quot;,</stringProp>
-              <stringProp name="-1097427635">&quot;iNew&quot;:true,</stringProp>
+              <stringProp name="-77279142">&quot;iNew&quot;:false,</stringProp>
               <stringProp name="1654218313">&quot;image&quot;:&quot;https://imgproxy.mtime.cn/get.ashx?uri=</stringProp>
               <stringProp name="3919">},</stringProp>
               <stringProp name="123">{</stringProp>
