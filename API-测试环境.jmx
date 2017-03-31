@@ -6703,7 +6703,7 @@ WHERE is_show=2 AND live_status IN (3,4) AND product=1 AND live_type=1</stringPr
         <hashTree>
           <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="pc精彩分页第2页第1条数据" enabled="true">
             <stringProp name="dataSource">测试环境mysql</stringProp>
-            <stringProp name="query">SELECT id,title,live_status 
+            <stringProp name="query">SELECT id,live_status 
 FROM live.live 
 WHERE is_show=2 AND live_status IN (3,4) AND product=1 AND live_type=1
 ORDER BY end_time DESC
@@ -6714,7 +6714,7 @@ LIMIT 15,1</stringProp>
             <stringProp name="queryType">Select Statement</stringProp>
             <stringProp name="resultSetHandler">Store as String</stringProp>
             <stringProp name="resultVariable"></stringProp>
-            <stringProp name="variableNames">liveId,title,liveStatus</stringProp>
+            <stringProp name="variableNames">liveId,liveStatus</stringProp>
           </JDBCSampler>
           <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1.9.1 精彩回放分页 有数据" enabled="true">
@@ -6759,7 +6759,6 @@ LIMIT 15,1</stringProp>
                 <stringProp name="123">{</stringProp>
                 <stringProp name="1677154464">&quot;liveId&quot;:${liveId_1},</stringProp>
                 <stringProp name="227674638">&quot;liveStatus&quot;:${liveStatus_1},</stringProp>
-                <stringProp name="313439976">&quot;title&quot;:&quot;${title_1}&quot;,</stringProp>
                 <stringProp name="125">}</stringProp>
               </collectionProp>
               <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
@@ -6858,7 +6857,7 @@ LIMIT 15,1</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="精彩回放数据大于15条" enabled="true">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="精彩回放数据小于等于15条" enabled="true">
           <stringProp name="IfController.condition">${num_1}&lt;=15</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
         </IfController>
